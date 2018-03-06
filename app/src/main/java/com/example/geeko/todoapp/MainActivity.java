@@ -19,11 +19,20 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * do not instantiate this here
+     */
     private List<ToDo> toDoList = new ArrayList<>();
+
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swiper;
     private ToDoAdapter mAdapter;
     private FloatingActionButton fab;
+
+    /** this must be a static final variable e.g
+     * private static final int RC = 1;
+     *
+    */
     private int requestCode = 1;
     private String title, descrip;
 
@@ -43,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * always instantiate your adapter with an empty list e.g
+         * mAdapter = new ToDoAdapter(this, new ArrayList(), swiper);
+         */
         mAdapter = new ToDoAdapter(this, toDoList, swiper);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -68,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToDoData(String title, String description, String date) {
         ToDo todoItem = new ToDo(title, description, date);
+        /**
+         * always check if your list is null before you use it e.g
+         * if (toDoList == null) {
+         *  toDoList = new ArrayList();
+         *  toDoList.add(0, todoItem);
+         * } else {
+         *  toDoList.add(0, todoItem);
+         * }
+         */
         toDoList.add(0, todoItem);
 
         mAdapter.notifyDataSetChanged();
