@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * do not instantiate this here
      */
-    private List<ToDo> toDoList = new ArrayList<>();
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swiper;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
      * private static final int RC = 1;
      *
     */
-    private int requestCode = 1;
+    private static final int requestCode = 1;
     private String title, descrip;
 
     @Override
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
          * always instantiate your adapter with an empty list e.g
          * mAdapter = new ToDoAdapter(this, new ArrayList(), swiper);
          */
-        mAdapter = new ToDoAdapter(this, toDoList, swiper);
+        mAdapter = new ToDoAdapter(this, new ArrayList(), swiper);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -90,7 +89,12 @@ public class MainActivity extends AppCompatActivity {
          *  toDoList.add(0, todoItem);
          * }
          */
-        toDoList.add(0, todoItem);
+        if (toDoList == null) {
+         *  toDoList = new ArrayList();
+         *  toDoList.add(0, todoItem);
+         * } else {
+         *  toDoList.add(0, todoItem);
+         * }
 
         mAdapter.notifyDataSetChanged();
     }
