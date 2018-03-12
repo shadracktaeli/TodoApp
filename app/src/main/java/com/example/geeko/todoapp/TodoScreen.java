@@ -38,19 +38,13 @@ public class TodoScreen extends AppCompatActivity{
                  *  finish();
                  * }
                  */
-                final String title = txtTitle.getText().toString().trim();
-                final String descrip = txtDescription.getText().toString().trim();
-                if(TextUtils.isEmpty(title)) {
-                    txtTitle.setError("This field cannot be blank!");
-                } else if(TextUtils.isEmpty(descrip)){
-                    txtDescription.setError("This field cannot be blank!");
-                } else {
-                    Intent intent = new Intent();
-                    intent.putExtra("title", txtTitle.getText().toString());
-                    intent.putExtra("description", txtDescription.getText().toString());
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
+                if(validates()) {
+                 *  Intent intent = new Intent();
+                 *  intent.putExtra("title", txtTitle.getText().toString());
+                 *  intent.putExtra("description", txtDescription.getText().toString());
+                 *  setResult(RESULT_OK, intent);
+                 *  finish();
+                 * }
             }
         });
 
