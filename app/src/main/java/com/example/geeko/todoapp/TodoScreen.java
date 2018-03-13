@@ -27,18 +27,7 @@ public class TodoScreen extends AppCompatActivity{
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**
-                 * try to separate code into functions e.g
-                 *
-                 * if(validates()) {
-                 *  Intent intent = new Intent();
-                 *  intent.putExtra("title", txtTitle.getText().toString());
-                 *  intent.putExtra("description", txtDescription.getText().toString());
-                 *  setResult(RESULT_OK, intent);
-                 *  finish();
-                 * }
-                 */
-                if(validates()) {
+                if(validates()) {                                           //Code separated into functions
                   Intent intent = new Intent();
                   intent.putExtra("title", txtTitle.getText().toString());
                   intent.putExtra("description", txtDescription.getText().toString());
