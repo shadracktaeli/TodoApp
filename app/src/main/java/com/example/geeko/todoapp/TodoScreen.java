@@ -39,12 +39,12 @@ public class TodoScreen extends AppCompatActivity{
                  * }
                  */
                 if(validates()) {
-                 *  Intent intent = new Intent();
-                 *  intent.putExtra("title", txtTitle.getText().toString());
-                 *  intent.putExtra("description", txtDescription.getText().toString());
-                 *  setResult(RESULT_OK, intent);
-                 *  finish();
-                 * }
+                  Intent intent = new Intent();
+                  intent.putExtra("title", txtTitle.getText().toString());
+                  intent.putExtra("description", txtDescription.getText().toString());
+                  setResult(RESULT_OK, intent);
+                  finish();
+                }
             }
         });
 

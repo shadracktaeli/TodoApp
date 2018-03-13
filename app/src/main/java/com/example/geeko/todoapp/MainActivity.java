@@ -19,20 +19,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * do not instantiate this here
-     */
+    private List<ToDo> toDoList; // Instantiation removed
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swiper;
     private ToDoAdapter mAdapter;
     private FloatingActionButton fab;
 
-    /** this must be a static final variable e.g
-     * private static final int RC = 1;
-     *
-    */
-    private static final int requestCode = 1;
+    
+    private static final int requestCode = 1; //Integer variable revised to static final
     private String title, descrip;
 
     @Override
@@ -51,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         * always instantiate your adapter with an empty list e.g
-         * mAdapter = new ToDoAdapter(this, new ArrayList(), swiper);
-         */
-        mAdapter = new ToDoAdapter(this, new ArrayList(), swiper);
+        toDoList = new ArrayList(); //Instatiating list before parsing it to the adapter
+
+
+        mAdapter = new ToDoAdapter(this, toDoList, swiper);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -80,21 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToDoData(String title, String description, String date) {
         ToDo todoItem = new ToDo(title, description, date);
-        /**
-         * always check if your list is null before you use it e.g
-         * if (toDoList == null) {
-         *  toDoList = new ArrayList();
-         *  toDoList.add(0, todoItem);
-         * } else {
-         *  toDoList.add(0, todoItem);
-         * }
-         */
-        if (toDoList == null) {
-         *  toDoList = new ArrayList();
-         *  toDoList.add(0, todoItem);
-         * } else {
-         *  toDoList.add(0, todoItem);
-         * }
+
+        if (toDoList == null) {             //Revision made to check whether list is null from the onset
+            toDoList = new ArrayList<>();
+            toDoList.add(0, todoItem);
+         } else {
+            toDoList.add(0, todoItem);
+        }
 
         mAdapter.notifyDataSetChanged();
     }
