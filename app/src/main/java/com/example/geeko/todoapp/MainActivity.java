@@ -19,12 +19,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<ToDo> toDoList = new ArrayList<>();
+    private List<ToDo> toDoList; // Instantiation removed
+
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swiper;
     private ToDoAdapter mAdapter;
     private FloatingActionButton fab;
-    private int requestCode = 1;
+
+    
+    private static final int requestCode = 1; //Integer variable revised to static final
     private String title, descrip;
 
     @Override
@@ -42,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,requestCode);
             }
         });
+
+        toDoList = new ArrayList(); //Instatiating list before parsing it to the adapter
+
 
         mAdapter = new ToDoAdapter(this, toDoList, swiper);
         recyclerView.setHasFixedSize(true);
@@ -68,7 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToDoData(String title, String description, String date) {
         ToDo todoItem = new ToDo(title, description, date);
-        toDoList.add(0, todoItem);
+
+        if (toDoList == null) {             //Revision made to check whether list is null from the onset
+            toDoList = new ArrayList<>();
+            toDoList.add(0, todoItem);
+         } else {
+            toDoList.add(0, todoItem);
+        }
 
         mAdapter.notifyDataSetChanged();
     }

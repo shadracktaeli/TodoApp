@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>{
